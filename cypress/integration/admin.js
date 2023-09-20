@@ -91,4 +91,73 @@ describe('Admin test cases', () => {
             })
         })
     })
+
+    it('Add a user to the system with existing username', () => {
+        cy.visit('https://opensource-demo.orangehrmlive.com/');
+
+        cy.fixture('data').then( (data) => {
+            cy.login(data.username, data.password);
+        } )
+
+        cy.get('h6.oxd-text').should('have.text', 'Dashboard');
+
+        cy.get('a[href*="Admin"]').as('admin');
+        cy.get('@admin').click();
+
+        cy.get('button').contains('Add').click();
+
+        // Find and select the user role
+        cy.get('label').contains('User Role').parent().parent().find('div').eq(1).click();
+
+        cy.fixture('data').then((data) => {
+            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
+                if($element.text().includes(data.userRole[0]))
+                    cy.wrap($element).click();
+            })
+        })
+
+        // Find and select the status
+        cy.get('label').contains('Status').parent().parent().find('div').eq(1).click();
+
+        cy.fixture('data').then((data) => {
+            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
+                if($element.text().includes(data.status[0]))
+                    cy.wrap($element).click();
+            })
+        })
+
+        // Type the Employee Name and select in autocomplete
+        cy.fixture('data').then((data) => {
+            cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(data.employeeName[0]);
+
+            cy.wait(2000);
+
+            cy.get('div[role="listbox"]').find('.oxd-autocomplete-option').each(($element, index, $list) => {
+                
+                if($element.text().includes(data.employeeName[0]))
+                    cy.wrap($element).click();
+            })
+        })
+
+        // Type the Username
+        cy.fixture('data').then((data) => {
+            cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(data.employeeUsername);
+        })
+
+        // Type the password
+        cy.fixture('data').then((data) => {
+            cy.get('label').contains('Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+        })
+        
+        // Type the confirm password
+        cy.fixture('data').then((data) => { 
+            cy.get('label').contains('Confirm Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+        })
+
+        // Click on Submit
+        cy.get('button[type="submit"]').click();
+
+        // Verify if error message gets displayed: "Already exists"
+        cy.get('span.oxd-input-field-error-message').should('have.text', 'Already exists');
+    })
 })
