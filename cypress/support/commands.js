@@ -17,6 +17,28 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get('input[name="password"]').type(password);
     cy.get('button[class*="login"]').click();
 } )
+
+Cypress.Commands.add('deleteUser', (username) => {
+    // Type the username in order to search it
+    cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(username);
+
+    // Click on Submit
+    cy.get('button[type="submit"]').click({force: true});
+
+    cy.wait(1000);
+
+    // Delete it in case exists
+    cy.get('body').then($body => {
+        if($body.find('div.oxd-table-card > div[role="row"]').length > 0) {
+            cy.get('div.oxd-table-card > div[role="row"]').each(($element, index, $list) => {
+                if( $element.find('div').eq(3).text().includes(username) ) {
+                    cy.wrap($element).find('div i.bi-trash').parent().click();
+                    cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
+                }
+            })
+        }
+    })
+})
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
