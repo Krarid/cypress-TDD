@@ -52,8 +52,26 @@ Cypress.Commands.add('deleteJob', (job) => {
     })
 })
 
+// Add employee in case it exists
+Cypress.Commands.add('addEmployee', (firstName, lastName, id) => {
+    // Click on Add button
+    cy.get('button').contains('Add').click();
+
+    // Type the first name
+    cy.get('input[name="firstName"]').type(firstName);
+    
+    // Type the last name
+    cy.get('input[name="lastName"]').type(lastName);
+
+    // Type the employee id
+    cy.get('label').contains('Employee Id').parent().parent().find('div').eq(1).clear();
+    cy.typeInField('Employee Id', id);
+
+    // Save
+    cy.get('button').contains('Save').click();
+})
+
 // Delete employee in case it exists
-// Delete user in case it exists
 Cypress.Commands.add('deleteEmployee', (employee) => {
     // Type the username in order to search it
     cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(employee);

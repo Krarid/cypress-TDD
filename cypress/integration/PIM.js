@@ -14,32 +14,15 @@ describe('PIM test cases', () => {
         cy.get('a[href*="Pim"]').as('PIM');
         cy.get('@PIM').click();
 
-        // Verify if user exists if so delete it
+        // Verify if employee exists if so delete it
         cy.fixture('data').then((data) => {
             cy.deleteEmployee(data.firstName);
         })
 
-        // Click on Add button
-        cy.get('button').contains('Add').click();
-
-        // Type the first name
+        // Add the employee
         cy.fixture('data').then((data) => {
-            cy.get('input[name="firstName"]').type(data.firstName);
+            cy.addEmployee(data.firstName, data.lastName, data.employeeID);
         })
-        
-        // Type the last name
-        cy.fixture('data').then((data) => {
-            cy.get('input[name="lastName"]').type(data.lastName);
-        })
-
-        // Type the employee id
-        cy.fixture('data').then((data) => {
-            cy.get('label').contains('Employee Id').parent().parent().find('div').eq(1).clear();
-            cy.typeInField('Employee Id', data.employeeID);
-        })
-
-        // Save
-        cy.get('button').contains('Save').click();
 
         // Verify if the user was added successfully
         cy.fixture('data').then((data) => {
