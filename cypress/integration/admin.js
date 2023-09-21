@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('Admin test cases', () => {
-    /* it('Add a user to the system', () => {
+    it('Add a user to the system', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/');
 
         cy.fixture('data').then( (data) => {
@@ -80,9 +80,9 @@ describe('Admin test cases', () => {
                 expect($element.find('div').eq(3).text()).to.be.equal(data.employeeUsername)
             })
         })
-    }) */
+    })
 
-    /* it('Add a user to the system with existing username', () => {
+    it('Add a user to the system with existing username', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/');
 
         cy.fixture('data').then( (data) => {
@@ -139,7 +139,7 @@ describe('Admin test cases', () => {
 
         // Verify if error message gets displayed: "Already exists"
         cy.get('span.oxd-input-field-error-message').should('have.text', 'Already exists');
-    }) */
+    })
 
     it('Add a job', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/');
@@ -182,6 +182,38 @@ describe('Admin test cases', () => {
         // Search the recently added job
         cy.fixture('data').then((data) => {
             cy.get('div.oxd-table-card > div > div:nth-child(2)').contains(data.jobTitle).should('have.text', data.jobTitle);
+        });
+    })
+
+    it('Delete a job', () => {
+        cy.visit('https://opensource-demo.orangehrmlive.com/');
+
+        cy.fixture('data').then( (data) => {
+            cy.login(data.username, data.password);
+        } )
+
+        cy.get('h6.oxd-text').should('have.text', 'Dashboard');
+
+        // Click on "Admin" from left sidepanel
+        cy.get('a[href*="Admin"]').as('admin');
+        cy.get('@admin').click();
+
+        // Click on "Job" from topbar
+        cy.get('li[class*="topbar"]').contains('Job').click();
+
+        // Click on "Job Titles"
+        cy.get('ul.oxd-dropdown-menu > li').contains('Job Titles').click();
+
+        // Delete the job in case it exists
+        cy.fixture('data').then((data) => {
+            cy.deleteJob(data.jobTitle);
+        })
+
+        // Search the recently deleted job
+        cy.fixture('data').then((data) => {
+            cy.get('div.oxd-table-card > div > div:nth-child(2) > div').then( ($element) => {
+                expect($element).not.to.include.text(data.jobTitle);
+            } );
         });
     })
 })
