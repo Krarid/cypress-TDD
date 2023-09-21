@@ -74,7 +74,7 @@ Cypress.Commands.add('addEmployee', (firstName, lastName, id) => {
 // Delete employee in case it exists
 Cypress.Commands.add('deleteEmployee', (employee) => {
     // Type the username in order to search it
-    cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(employee);
+    cy.get('label').contains('Employee Name').parent().parent().find('div:last-child input').clear().type(employee);
 
     // Click on Submit
     cy.get('button[type="submit"]').click({force: true});

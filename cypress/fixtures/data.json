@@ -11,5 +11,7 @@
   "jobTitle": "QA Automation Engineer",
   "firstName": "Automation",
   "lastName": "Engineer",
-  "employeeID": "123456789"
+  "employeeID": "123456789",
+  "editFirstName": "Python",
+  "editLastName": "Developer"
 }
