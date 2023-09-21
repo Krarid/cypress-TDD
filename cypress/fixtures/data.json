@@ -7,5 +7,6 @@
   "status": ["Enabled", "Disabled"],
   "employeeName": ["Linda", "Odis"],
   "employeeUsername": "Test123",
-  "employeePassword": "Test123@QA$"
+  "employeePassword": "Test123@QA$",
+  "jobTitle": "QA Automation Engineer"
 }
