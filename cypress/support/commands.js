@@ -18,6 +18,7 @@ Cypress.Commands.add('login', (username, password) => {
     cy.get('button[class*="login"]').click();
 } )
 
+// Delete user in case it exists
 Cypress.Commands.add('deleteUser', (username) => {
     // Type the username in order to search it
     cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(username);
@@ -36,6 +37,17 @@ Cypress.Commands.add('deleteUser', (username) => {
                     cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
                 }
             })
+        }
+    })
+})
+
+// Delete job in case it exists
+Cypress.Commands.add('deleteJob', (job) => {
+    
+    cy.get('div.oxd-table-card > div').each(($element, index, $list) => {
+        if( $element.find('div:nth-child(2)').text().includes(job) ) {
+            cy.wrap($element).find('div:nth-child(4) button:first-child').click({force: true});
+            cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
         }
     })
 })

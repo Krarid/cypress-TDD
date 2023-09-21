@@ -160,7 +160,12 @@ describe('Admin test cases', () => {
         // Click on "Job Titles"
         cy.get('ul.oxd-dropdown-menu > li').contains('Job Titles').click();
 
-        cy.get('button').contains('Add').click();
+        // Delete the job in case it exists
+        cy.fixture('data').then((data) => {
+            cy.deleteJob(data.jobTitle);
+        })
+
+        cy.get('button').contains('Add').click({force: true});
 
         // Type the Job Title
         cy.fixture('data').then((data) => {
