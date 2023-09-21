@@ -8,5 +8,8 @@
   "employeeName": ["Linda", "Odis"],
   "employeeUsername": "Test123",
   "employeePassword": "Test123@QA$",
-  "jobTitle": "QA Automation Engineer"
+  "jobTitle": "QA Automation Engineer",
+  "firstName": "Automation",
+  "lastName": "Engineer",
+  "employeeID": "123456789"
 }

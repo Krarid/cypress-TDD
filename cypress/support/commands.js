@@ -52,6 +52,30 @@ Cypress.Commands.add('deleteJob', (job) => {
     })
 })
 
+// Delete employee in case it exists
+// Delete user in case it exists
+Cypress.Commands.add('deleteEmployee', (employee) => {
+    // Type the username in order to search it
+    cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(employee);
+
+    // Click on Submit
+    cy.get('button[type="submit"]').click({force: true});
+
+    cy.wait(1000);
+
+    // Delete it in case exists
+    cy.get('body').then($body => {
+        if($body.find('div.oxd-table-card > div[role="row"]').length > 0) {
+            cy.get('div.oxd-table-card > div[role="row"]').each(($element, index, $list) => {
+                if( $element.find('div').eq(5).text().includes(employee) ) {
+                    cy.wrap($element).find('div i.bi-trash').parent().click();
+                    cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
+                }
+            })
+        }
+    })
+})
+
 Cypress.Commands.add('selectOption', (field, value) => {
     cy.get('label').contains(field).parent().parent().find('div').eq(1).click();
 
