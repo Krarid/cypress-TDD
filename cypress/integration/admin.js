@@ -21,28 +21,18 @@ describe('Admin test cases', () => {
         cy.get('button').contains('Add').click();
 
         // Find and select the user role
-        cy.get('label').contains('User Role').parent().parent().find('div').eq(1).click();
-
         cy.fixture('data').then((data) => {
-            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
-                if($element.text().includes(data.userRole[0]))
-                    cy.wrap($element).click();
-            })
+            cy.selectOption('User Role', data.userRole[0]);
         })
 
         // Find and select the status
-        cy.get('label').contains('Status').parent().parent().find('div').eq(1).click();
-
         cy.fixture('data').then((data) => {
-            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
-                if($element.text().includes(data.status[0]))
-                    cy.wrap($element).click();
-            })
+            cy.selectOption('Status', data.status[0]);
         })
 
         // Type the Employee Name and select in autocomplete
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(data.employeeName[0]);
+            cy.typeInField('Employee Name', data.employeeName[0]);
 
             cy.wait(2000);
 
@@ -55,17 +45,17 @@ describe('Admin test cases', () => {
 
         // Type the Username
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(data.employeeUsername);
+            cy.typeInField('Username', data.employeeUsername);
         })
 
         // Type the password
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+            cy.typeInField('Password', data.employeePassword);
         })
         
         // Type the confirm password
-        cy.fixture('data').then((data) => { 
-            cy.get('label').contains('Confirm Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+        cy.fixture('data').then((data) => {
+            cy.typeInField('Confirm Password', data.employeePassword);
         })
 
         // Click on Submit
@@ -78,7 +68,7 @@ describe('Admin test cases', () => {
 
         // Type the username in order to search it
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(data.employeeUsername);
+            cy.typeInField('Username', data.employeeUsername);
         })
 
         // Click on Submit
@@ -107,28 +97,18 @@ describe('Admin test cases', () => {
         cy.get('button').contains('Add').click();
 
         // Find and select the user role
-        cy.get('label').contains('User Role').parent().parent().find('div').eq(1).click();
-
         cy.fixture('data').then((data) => {
-            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
-                if($element.text().includes(data.userRole[0]))
-                    cy.wrap($element).click();
-            })
+            cy.selectOption('User Role', data.userRole[0]);
         })
 
         // Find and select the status
-        cy.get('label').contains('Status').parent().parent().find('div').eq(1).click();
-
         cy.fixture('data').then((data) => {
-            cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
-                if($element.text().includes(data.status[0]))
-                    cy.wrap($element).click();
-            })
+            cy.selectOption('Status', data.status[0]);
         })
 
         // Type the Employee Name and select in autocomplete
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Employee Name').parent().parent().find('div').eq(1).type(data.employeeName[0]);
+            cy.typeInField('Employee Name', data.employeeName[0]);
 
             cy.wait(2000);
 
@@ -141,17 +121,17 @@ describe('Admin test cases', () => {
 
         // Type the Username
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Username').parent().parent().find('div').eq(1).type(data.employeeUsername);
+            cy.typeInField('Username', data.employeeUsername);
         })
 
         // Type the password
         cy.fixture('data').then((data) => {
-            cy.get('label').contains('Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+            cy.typeInField('Password', data.employeePassword);
         })
         
         // Type the confirm password
-        cy.fixture('data').then((data) => { 
-            cy.get('label').contains('Confirm Password').parent().parent().find('div').eq(1).type(data.employeePassword);
+        cy.fixture('data').then((data) => {
+            cy.typeInField('Confirm Password', data.employeePassword);
         })
 
         // Click on Submit

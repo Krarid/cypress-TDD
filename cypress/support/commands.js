@@ -39,6 +39,19 @@ Cypress.Commands.add('deleteUser', (username) => {
         }
     })
 })
+
+Cypress.Commands.add('selectOption', (field, value) => {
+    cy.get('label').contains(field).parent().parent().find('div').eq(1).click();
+
+    cy.get('div[role="listbox"] > div[role="option"]').each(($element, index, $list) => {
+        if($element.text().includes(value))
+            cy.wrap($element).click();
+    })
+} )
+
+Cypress.Commands.add('typeInField', (field, value) => {
+    cy.get('label').contains(field).parent().parent().find('div').eq(1).type(value);
+})
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
