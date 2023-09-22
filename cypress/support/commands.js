@@ -55,7 +55,7 @@ Cypress.Commands.add('deleteJob', (job) => {
 // Add employee in case it exists
 Cypress.Commands.add('addEmployee', (firstName, lastName, id) => {
     // Click on Add button
-    cy.get('button').contains('Add').click();
+    cy.get('button').contains('Add').click({force: true});
 
     // Type the first name
     cy.get('input[name="firstName"]').type(firstName);
@@ -71,16 +71,19 @@ Cypress.Commands.add('addEmployee', (firstName, lastName, id) => {
     cy.get('button').contains('Save').click();
 })
 
-// Delete employee in case it exists
-Cypress.Commands.add('deleteEmployee', (employee) => {
+// Search user/employee
+Cypress.Commands.add('search', (label, value) => {
     // Type the username in order to search it
-    cy.get('label').contains('Employee Name').parent().parent().find('div:last-child input').clear().type(employee);
+    cy.get('label').contains(label).parent().parent().find('div:last-child input').clear().type(value);
 
     // Click on Submit
     cy.get('button[type="submit"]').click({force: true});
 
     cy.wait(1000);
+} )
 
+// Delete employee in case it exists
+Cypress.Commands.add('deleteEmployee', (employee) => {
     // Delete it in case exists
     cy.get('body').then($body => {
         if($body.find('div.oxd-table-card > div[role="row"]').length > 0) {
