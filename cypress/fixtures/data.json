@@ -16,5 +16,6 @@
   "editLastName": "Developer",
   "vacancyName": "QA Automation Engineer",
   "vacancyJob": "QA Engineer",
-  "hiringManager": "Linda"
+  "hiringManager": "Linda",
+  "post": "Hello World!"
 }
