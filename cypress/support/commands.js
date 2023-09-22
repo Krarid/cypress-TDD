@@ -97,6 +97,45 @@ Cypress.Commands.add('deleteEmployee', (employee) => {
     })
 })
 
+// Add vacancy
+Cypress.Commands.add('addVacancy', (vacancy, job, manager) => {
+    // Type the vacancy name
+    cy.typeInField('Vacancy Name', vacancy);
+
+    // Find and select the job title
+    cy.selectOption('Job Title', job);
+
+    // Type the Hiring Manager and select it in autocomplete
+    cy.typeInField('Hiring Manager', manager);
+
+    cy.wait(2000);
+
+    cy.get('div[role="listbox"]').find('.oxd-autocomplete-option').each(($element, index, $list) => {
+        
+        if($element.text().includes(manager))
+            cy.wrap($element).click();
+    })
+
+    // Click on Submit
+    cy.get('button[type="submit"]').click();
+
+    cy.intercept('/web/index.php/api/v2/recruitment/vacancies?limit=0').as('editVacancy');
+    cy.wait('@editVacancy');
+})
+
+// Delete vacancy
+Cypress.Commands.add('deleteVacancy', (vacancy) => {
+    cy.get('body').then( $body => {
+        cy.log($body.find('div.oxd-table-card > div > div:nth-child(2)').text());
+        if($body.find('div.oxd-table-card > div > div:nth-child(2)').text().includes(vacancy)) {
+            cy.log('YEAH');
+            // Delete vacancy
+            cy.get('div.oxd-table-card > div > div:nth-child(2)').contains(vacancy).parent().parent().find('div:nth-child(6) button:first-child').click();
+            cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
+        }
+    })
+})
+
 Cypress.Commands.add('selectOption', (field, value) => {
     cy.get('label').contains(field).parent().parent().find('div').eq(1).click();
 

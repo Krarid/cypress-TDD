@@ -13,5 +13,8 @@
   "lastName": "Engineer",
   "employeeID": "123456789",
   "editFirstName": "Python",
-  "editLastName": "Developer"
+  "editLastName": "Developer",
+  "vacancyName": "QA Automation Engineer",
+  "vacancyJob": "QA Engineer",
+  "hiringManager": "Linda"
 }
