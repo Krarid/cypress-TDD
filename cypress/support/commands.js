@@ -126,10 +126,7 @@ Cypress.Commands.add('addVacancy', (vacancy, job, manager) => {
 // Delete vacancy
 Cypress.Commands.add('deleteVacancy', (vacancy) => {
     cy.get('body').then( $body => {
-        cy.log($body.find('div.oxd-table-card > div > div:nth-child(2)').text());
         if($body.find('div.oxd-table-card > div > div:nth-child(2)').text().includes(vacancy)) {
-            cy.log('YEAH');
-            // Delete vacancy
             cy.get('div.oxd-table-card > div > div:nth-child(2)').contains(vacancy).parent().parent().find('div:nth-child(6) button:first-child').click();
             cy.get('div.orangehrm-modal-footer > button > i.bi-trash').click();
         }
