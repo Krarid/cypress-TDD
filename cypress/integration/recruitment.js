@@ -1,5 +1,5 @@
 describe( 'Recruitment test cases', () => {
-    /* it('Add a vacancy', () => {
+        it('Add a vacancy', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/');
 
         cy.fixture('data').then( (data) => {
@@ -38,7 +38,7 @@ describe( 'Recruitment test cases', () => {
         cy.fixture('data').then((data) => {
             cy.get('div.oxd-table-card > div > div:nth-child(2)').contains(data.vacancyName).should('have.text', data.vacancyName);
         });
-    }) */
+    })
 
     it('Delete a vacancy', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/');
