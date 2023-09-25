@@ -4,7 +4,14 @@
   "description": "A QA Automation project developed with JavaScript and Test Driven Development",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/cypress run",
+    "open": "node_modules/.bin/cypress open",
+    "headed": "npm run test -- --headed",
+    "chrome": "npm run test -- --headed -b chrome",
+    "electron": "npm run test -- --headed -b electron",
+    "edge": "npm run test -- --headed -b edge",
+    "firefox": "npm run test -- --headed -b firefox",
+    "dashboard": "npx cypress run --headed -b electron --record --key 5e78727c-14eb-4bab-84a6-188535dd7b7b"
   },
   "repository": {
     "type": "git",

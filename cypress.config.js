@@ -11,4 +11,8 @@ module.exports = defineConfig({
       openMode: 3,
       },
   },
+  env: {
+    url: "https://opensource-demo.orangehrmlive.com/"
+  },
+  projectId: "jhj3wq",
 });

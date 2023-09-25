@@ -2,7 +2,7 @@
 
 describe('Admin test cases', () => {
     it('Add a user to the system', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -83,7 +83,7 @@ describe('Admin test cases', () => {
     })
 
     it('Add a user to the system with existing username', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -142,7 +142,7 @@ describe('Admin test cases', () => {
     })
 
     it('Add a job', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -186,7 +186,7 @@ describe('Admin test cases', () => {
     })
 
     it('Delete a job', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);

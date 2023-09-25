@@ -2,7 +2,7 @@
 
 describe('PIM test cases', () => {
     it('Add an employee', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -32,7 +32,7 @@ describe('PIM test cases', () => {
     })
 
     it('Edit an employee', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -88,7 +88,7 @@ describe('PIM test cases', () => {
     })
 
     it('Delete an employee', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
