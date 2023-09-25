@@ -11,4 +11,5 @@ module.exports = defineConfig({
       openMode: 3,
       },
   },
+  projectId: "jhj3wq",
 });
