@@ -2,7 +2,7 @@
 
 describe('Login test cases', () => {
     it('Login with correct credentials', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -12,7 +12,7 @@ describe('Login test cases', () => {
     })
 
     it('Login with incorrect credentials', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.incorrectUsername, data.incorrectPassword);

@@ -1,6 +1,6 @@
 describe( 'Recruitment test cases', () => {
-        it('Add a vacancy', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+    it('Add a vacancy', () => {
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -41,7 +41,7 @@ describe( 'Recruitment test cases', () => {
     })
 
     it('Delete a vacancy', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);

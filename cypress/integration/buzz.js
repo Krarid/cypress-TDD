@@ -1,6 +1,6 @@
 describe('Buzz test cases', () => {
     it('Create a post', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
@@ -27,7 +27,7 @@ describe('Buzz test cases', () => {
     })
 
     it('Like a post', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/');
+        cy.visit(Cypress.env('url'));
 
         cy.fixture('data').then( (data) => {
             cy.login(data.username, data.password);
